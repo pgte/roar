@@ -1,7 +1,16 @@
 {
     "name" : "roar"
-  , "version": "0.0.1"
+  , "version": "0.1.0"
   , "authors": [
     "Pedro Teixeira"
   ]
+  , engines: {
+    "node": ">= 0.4.12"
+  }
+  , scripts: {
+    "preinstall": "node-waf clean configure build"
+  }
+  , "main": {
+    "build/default/player"
+  }
 }
