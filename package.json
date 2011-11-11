@@ -4,13 +4,11 @@
   , "authors": [
     "Pedro Teixeira"
   ]
-  , engines: {
+  , "engines": {
     "node": ">= 0.4.12"
   }
-  , scripts: {
+  , "scripts": {
     "preinstall": "node-waf clean configure build"
   }
-  , "main": {
-    "build/default/player"
-  }
+  , "main": "build/default/player"
 }
