@@ -188,7 +188,7 @@ void destroyerCB (v8::Persistent<Value> object, void* parameter) {
 
 void AQBufferCallback (void* priv, AudioQueueRef AQ, AudioQueueBufferRef AQBuffer) {
 
-  fprintf(stderr, "\nAQBufferCallback()");
+  // fprintf(stderr, "\nAQBufferCallback()");
 
   return;
 }
@@ -206,7 +206,7 @@ void AQBufferCallback (void* priv, AudioQueueRef AQ, AudioQueueBufferRef AQBuffe
 
 v8::Handle<Value> Create (const Arguments &args) {
 
-  fprintf(stderr, "\nOK *** Player::Create() BEGIN");
+  // fprintf(stderr, "\nOK *** Player::Create() BEGIN");
   fflush(stderr);
 
   HandleScope scope;
@@ -284,7 +284,7 @@ v8::Handle<Value> Push (const Arguments &args) {
     return ThrowException(Exception::TypeError(String::New("Player::create(buffer): buffer.length must a multiple of 4")));
   }
 
-  fprintf(stderr, "bufferLength = %d\n", (int) bufferLength);
+  // fprintf(stderr, "bufferLength = %d\n", (int) bufferLength);
 
   err= AudioQueueAllocateBuffer (
     player->AQ,               // AudioQueueRef inAQ
@@ -292,8 +292,7 @@ v8::Handle<Value> Push (const Arguments &args) {
     &AQBuffer        // AudioQueueBufferRef *outBuffer
   );
 
-  fprintf(stdout, "\nplayer->AQBuffer: %p\n", &AQBuffer);
-  fflush(stdout);
+  // fprintf(stdout, "\nplayer->AQBuffer: %p\n", &AQBuffer);
 
   if (err) {
     AudioQueueDispose (player->AQ, true);
@@ -307,7 +306,7 @@ v8::Handle<Value> Push (const Arguments &args) {
   memcpy(AQBuffer->mAudioData, bufferData, bufferLength);
   AQBuffer->mAudioDataByteSize = bufferLength;
 
-  fprintf(stderr, "mAudioDataByteSize = %d\n", AQBuffer->mAudioDataByteSize);
+  // fprintf(stderr, "mAudioDataByteSize = %d\n", AQBuffer->mAudioDataByteSize);
 
   AQBuffer->mAudioDataByteSize = bufferLength;
   err = AudioQueueEnqueueBuffer(player->AQ, AQBuffer, 0, NULL);
